@@ -29,12 +29,12 @@ export default function MovieListPage(){
     }
 */}
     const [search, setSearch] = useState('')
-    const [listaFIlmes, SetListaFilmes] = useState(movies)
 
-    const handleSearch = (e) =>{
-        setSearch(e.target.value)
-        SetListaFilmes(filmesFiltrados)
+    const handleSearch = (event) =>{
+        setSearch(event.target.value)
     }
+
+    const filmesFiltrados = movies.filter( filme => filme.titulo.toLowerCase().includes(search.toLowerCase()))
 
     return(
         <>
@@ -43,11 +43,13 @@ export default function MovieListPage(){
 
         <div className="flex">
         {
-            listaFIlmes
-            .filter( filme => (filme.titulo).includes(search))
+            filmesFiltrados.length > 0 ?
+            filmesFiltrados
             .map(movie =>(
                 <MovieCard key={movie.id} {...movie}/>
             ))
+            :
+            <p>Filme não encontrado</p>
         }
         </div>
         {/*<p>{Math.random() * 101}</p>

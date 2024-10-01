@@ -1,5 +1,14 @@
 import { NavLink } from "react-router-dom"
+import Login from "./Login"
+import { useState } from "react"
 export default function Header(){
+
+    const [isLogged, setIsLogged] = useState(false)
+
+    const handleLogin = () => {
+        setIsLogged(!isLogged)
+    }
+
     return(
         <>
             <header className="flex w-full h-14 bg-purple-700 justify-around items-center text-white">
@@ -11,8 +20,11 @@ export default function Header(){
                         <li><NavLink to="/">Home</NavLink></li>
                         <li><NavLink to="/movies">Lista dos filmes</NavLink></li>
                         <li><NavLink to="/genre">Lista de Gênero</NavLink></li>
+                        {isLogged && <li><NavLink to="/settings"></NavLink></li>}
+                        <li><NavLink to="/settings">Configurações</NavLink></li>
                     </ul>
                 </nav>
+                <Login isLogged = {isLogged} handleLogin={handleLogin}/>
             </header>
         </>
     )
