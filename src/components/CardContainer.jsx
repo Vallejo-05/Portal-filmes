@@ -1,11 +1,9 @@
-export default function CardContainer({titulo, children}) {
-    return(
+export default function CardContainer({ titulo, children }) {
+    return (
         <div>
             <h1>{titulo}</h1>
             <div className="flex">
-                <div className="flex">
-                    {children}
-                </div>
+                {children}
             </div>
         </div>
     )
